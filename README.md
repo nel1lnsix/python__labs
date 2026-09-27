@@ -16,7 +16,7 @@ python_labs/
 Запуск любого задания из корня репозитория:
 
 ```bash
-python src/lab01/01_greetings.py
+python src/lab01/01_greeting.py
 ```
 
 ---
