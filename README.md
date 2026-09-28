@@ -8,9 +8,11 @@
 python_labs/
 ├─ README.md
 ├─ src/        # код по заданиям
-│  └─ lab01/
+│  ├─ lab01/
+│  └─ lab02/
 └─ images/     # скриншоты работы программ
-   └─ lab01/
+   ├─ lab01/
+   └─ lab02/
 ```
 
 Запуск любого задания из корня репозитория:
@@ -159,3 +161,73 @@ print(result)
 ![Задание 7 — расшифровка строки в Hello.](images/lab01/img07.png)
 
 *Рис. 7. Работа программы `07_decode_string.py`*
+
+---
+
+# ЛР2 — Коллекции и матрицы (list/tuple/set/dict)
+
+## Задание A — Списки
+
+Файл: [`src/lab02/arrays.py`](src/lab02/arrays.py)
+
+Функции: `min_max`, `unique_sorted`, `flatten`.
+
+```python
+# TODO: вставить код после решения
+```
+
+Запуск:
+
+```bash
+python src/lab02/arrays.py
+```
+
+<!-- TODO: сделать скриншот и раскомментировать
+![Задание A — min_max, unique_sorted, flatten](images/lab02/img01.png)
+
+*Рис. 8. Работа программы `arrays.py`*
+-->
+
+## Задание B — Матрицы
+
+Файл: [`src/lab02/matrix.py`](src/lab02/matrix.py)
+
+Функции: `transpose`, `row_sums`, `col_sums`.
+
+```python
+# TODO: вставить код после решения
+```
+
+Запуск:
+
+```bash
+python src/lab02/matrix.py
+```
+
+<!-- TODO: сделать скриншот и раскомментировать
+![Задание B — transpose, row_sums, col_sums](images/lab02/img02.png)
+
+*Рис. 9. Работа программы `matrix.py`*
+-->
+
+## Задание C — Кортежи: запись студента
+
+Файл: [`src/lab02/tuples.py`](src/lab02/tuples.py)
+
+Функция: `format_record`.
+
+```python
+# TODO: вставить код после решения
+```
+
+Запуск:
+
+```bash
+python src/lab02/tuples.py
+```
+
+<!-- TODO: сделать скриншот и раскомментировать
+![Задание C — форматирование записи студента](images/lab02/img03.png)
+
+*Рис. 10. Работа программы `tuples.py`*
+-->
