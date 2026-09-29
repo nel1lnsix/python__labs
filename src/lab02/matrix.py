@@ -9,7 +9,7 @@ def transpose(mat: list[list[float | int]]) -> list[list]:
     row_length = len(mat[0])
     for row in mat:
         if len(row) != row_length:
-            raise ValueError("матрица рваная — строки разной длины")
+            raise ValueError("матрица рваная — строки должны быть одинаковой длины")
 
     result = []
     for col_idx in range(row_length):
@@ -29,7 +29,7 @@ def row_sums(mat: list[list[float | int]]) -> list[float]:
     row_length = len(mat[0])
     for row in mat:
         if len(row) != row_length:
-            raise ValueError("матрица рваная — строки разной длины")
+            raise ValueError("матрица рваная — строки должны быть одинаковой длины")
 
     return [sum(row) for row in mat]
 
@@ -42,7 +42,7 @@ def col_sums(mat: list[list[float | int]]) -> list[float]:
     row_length = len(mat[0])
     for row in mat:
         if len(row) != row_length:
-            raise ValueError("матрица рваная — строки разной длины")
+            raise ValueError("матрица рваная — строки должны быть одинаковой длины")
 
     result = []
     for col_idx in range(row_length):
@@ -53,32 +53,36 @@ def col_sums(mat: list[list[float | int]]) -> list[float]:
 
     return result
 
+'''Тест кейсы:'''
 
-if __name__ == "__main__":
-    print("--- transpose ---")
-    print(transpose([[1, 2, 3]]))          
-    print(transpose([[1], [2], [3]]))      
-    print(transpose([[1, 2], [3, 4]]))     
-    print(transpose([]))                   
-    try:
-        print(transpose([[1, 2], [3]]))
-    except ValueError as e:
-        print("ValueError:", e)            
+#Для функции transpose:
+print('\nТесты дл функции traspose:')
 
-    print("--- row_sums ---")
-    print(row_sums([[1, 2, 3], [4, 5, 6]]))   
-    print(row_sums([[-1, 1], [10, -10]]))     
-    print(row_sums([[0, 0], [0, 0]]))         
+test_Cases_transpose = [[[1, 2, 3]], [[1], [2], [3]], [[1, 2], [3, 4]], [], [[1, 2], [3]]]
+for case in test_Cases_transpose:
     try:
-        print(row_sums([[1, 2], [3]]))
-    except ValueError as e:
-        print("ValueError:", e)               
+        print(transpose(case))
+    except ValueError as error:
+        print("ValueError:", error)
 
-    print("--- col_sums ---")
-    print(col_sums([[1, 2, 3], [4, 5, 6]]))   
-    print(col_sums([[-1, 1], [10, -10]]))     
-    print(col_sums([[0, 0], [0, 0]]))         
+##Для функции row_sums:
+print("\nТесты для функции row_sums:")
+
+test_Cases_row_sums = [[[1, 2, 3], [4, 5, 6]], [[-1, 1], [10, -10]], [[0, 0], [0, 0]], [[1, 2], [3]]]
+for case in test_Cases_row_sums:
     try:
-        print(col_sums([[1, 2], [3]]))
-    except ValueError as e:
-        print("ValueError:", e)               
+        print(row_sums(case))
+    except ValueError as error:
+        print("ValueError:", error)
+              
+
+##Для функции col_sums:
+print("\nТесты для функции col_sums:")
+
+test_Cases_col_sums = [[[1, 2, 3], [4, 5, 6]], [[-1, 1], [10, -10]], [[0, 0], [0, 0]], [[1, 2], [3]]]
+for case in test_Cases_col_sums:
+    try:
+        print(col_sums(case))
+    except ValueError as error:
+        print("ValueError:", error)
+    
