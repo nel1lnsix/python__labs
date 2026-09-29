@@ -5,36 +5,50 @@ StudentRecord = tuple[str, str, float]
 
 
 def format_record(rec: StudentRecord) -> str:
-    """Вернуть строку вида "Иванов И.И., гр. BIVT-25, GPA 4.60".
+    
+    fio, group, gpa = rec
 
-    - ФИО из 2 или 3 слов, лишние пробелы убираются,
-      фамилия и инициалы с заглавной буквы.
-    - GPA выводится с 2 знаками после точки, 0.0 <= GPA <= 5.0.
+    if not fio or not fio.strip():
+        raise ValueError("ФИО не может быть пустым")
 
-    Raises:
-        ValueError: ...  (TODO: опиши, в каких случаях)
-        TypeError: ...   (TODO: опиши, в каких случаях)
-    """
-    # TODO: твоё решение
-    pass
+    if not group or not group.strip():
+        raise ValueError("группа не может быть пуста")
+
+    if not isinstance(gpa, (int, float)):
+        raise TypeError(f"GPA должен быть числом, получен {type(gpa).__name__}")
+
+    if gpa < 0.0 or gpa > 5.0:
+        raise ValueError("GPA должен быть в диапазоне [0.0, 5.0]")
+
+    words = fio.split()
+    if len(words) < 2:
+        raise ValueError("ФИО должно состоять из 2 или 3 слов")
+
+    words = [w.capitalize() for w in words]
+
+    surname = words[0]
+
+    if len(words) == 2:
+        initials = f"{words[1][0]}."
+    elif len(words) == 3:
+        initials = f"{words[1][0]}.{words[2][0]}."
+    else:
+        raise ValueError("ФИО должно состоять из 2 или 3 слов")
+
+    return f"{surname} {initials}, гр. {group.strip()}, GPA {gpa:.2f}"
 
 
 if __name__ == "__main__":
     print(format_record(("Иванов Иван Иванович", "BIVT-25", 4.6)))
-    # Иванов И.И., гр. BIVT-25, GPA 4.60
     print(format_record(("Петров Пётр", "IKBO-12", 5.0)))
-    # Петров П., гр. IKBO-12, GPA 5.00
     print(format_record(("Петров Пётр Петрович", "IKBO-12", 5.0)))
-    # Петров П.П., гр. IKBO-12, GPA 5.00
     print(format_record(("  сидорова  анна   сергеевна ", "ABB-01", 3.999)))
-    # Сидорова А.С., гр. ABB-01, GPA 4.00
 
-    # Некорректные записи: должна быть ошибка
     bad_records = [
-        ("", "BIVT-25", 4.6),                 # пустое ФИО
-        ("Иванов Иван", "", 4.6),             # пустая группа
-        ("Иванов Иван", "BIVT-25", "4.6"),    # GPA не число
-        ("Иванов Иван", "BIVT-25", 7.0),      # GPA вне диапазона
+        ("", "BIVT-25", 4.6),                 
+        ("Иванов Иван", "", 4.6),             
+        ("Иванов Иван", "BIVT-25", "4.6"),    
+        ("Иванов Иван", "BIVT-25", 7.0),      
     ]
     for rec in bad_records:
         try:
