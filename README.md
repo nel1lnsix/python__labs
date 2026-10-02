@@ -8,7 +8,7 @@
 python_labs/
 ├─ src/
 │  ├─ lab01/     → см. src/lab01/README.md
-│  └─ lab02/     → см. src/lab02/README.md
+│  ├─ lab02/     → см. src/lab02/README.md
 |  └─   lib/
 └─ images/       (скриншоты)
 ```
