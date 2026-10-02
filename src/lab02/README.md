@@ -52,6 +52,30 @@ def min_max(nums: list[float | int]) -> tuple[float | int, float | int]:
 ```
 # ----------------------------------------
 ## Тест-кейсы для задания А
+#### Для функции min_max:
+```py
+print(min_max([3, -1, 5, 5, 0])) # -> (-1, 5)    
+print(min_max([42])) # -> (42, 42)        
+print(min_max([-5, -2, -9])) # -> (-9, -2)  
+print(min_max([1.5, 2, 2.0, -3.1])) # -> (-3.1, 2.0)
+ ```         
+#### Для функции unique_sorted:
+```py
+print(unique_sorted([3, 1, 2, 1, 3])) # -> [1, 2, 3]  
+print(unique_sorted([])) # -> []     
+print(unique_sorted([-1, -1, 0, 2, 2])) # -> [-1, 0, 2]
+print(unique_sorted([1.0, 1, 2.5, 2.5, 0])) # -> [0, 1.0, 2.5]
+```
+#### Для функции flatten:
+```py
+test_cases_flatten = [[[1, 2], [3,4]], [[1,2], (3, 4, 5)], [[1], [], [2,3]], [[1, 2], "ab"]]
+for test in test_cases_flatten:
+    try:
+        print(flatten(test))
+    except TypeError as error:
+        print("TypeError:", error)
+```
+## Output:
 ![тык](../../images/lab02/task_A_test_cases.png)
 
 ## Задание B — Матрицы
@@ -116,13 +140,76 @@ def col_sums(mat: list[list[float | int]]) -> list[float]:
 ```
 # ----------------------------------------
 ## Тест-кейсы для задания Б
+#### Для функции transpose:
+```py
+test_Cases_transpose = [[[1, 2, 3]], [[1], [2], [3]], [[1, 2], [3, 4]], [], [[1, 2], [3]]]
+for case in test_Cases_transpose:
+    try:
+        print(transpose(case))
+    except ValueError as error:
+        print("ValueError:", error)
+```
+#### Для функции row_sums:
+```py
+test_Cases_row_sums = [[[1, 2, 3], [4, 5, 6]], [[-1, 1], [10, -10]], [[0, 0], [0, 0]], [[1, 2], [3]]]
+for case in test_Cases_row_sums:
+    try:
+        print(row_sums(case))
+    except ValueError as error:
+        print("ValueError:", error)
+```  
+
+#### Для функции col_sums:
+```py
+test_Cases_col_sums = [[[1, 2, 3], [4, 5, 6]], [[-1, 1], [10, -10]], [[0, 0], [0, 0]], [[1, 2], [3]]]
+for case in test_Cases_col_sums:
+    try:
+        print(col_sums(case))
+    except ValueError as error:
+        print("ValueError:", error)
+```
+## Output:
 ![тык](../../images/lab02/task_B_test_cases.png)
 
 ## Задание C — Кортежи: запись студента
 
 ```py
+def format_record(rec: tuple[str, str, float]) -> str:
+    fio, group, gpa = rec # кортеж с данными о user'e
+    
+    if not isinstance(fio, str) or not isinstance(group, str):
+        raise TypeError('ФИО и группа студента должны быть в строчном виде данных')
+    if not (0.0 <= gpa <= 5.0):
+        raise ValueError('GPA студента должен быть in range(0.0 - 5.0)')
+    
+    parts_fio = fio.split()
+    parts_fio = [p for p in parts_fio if p]
 
+    if len(parts_fio) < 2:
+        raise ValueError('ФИО содержит минимум два слова')
+    
+    surname = parts_fio[0].capitalize()
+    initials = '.'.join(p[0].upper() for p in parts_fio[1:]) + '.' 
+
+    gpa_s = f"{gpa:.2f}"
+
+    return f"{surname} {initials}, гр. {group}, GPA {gpa_s}" 
 ```
+# ----------------------------------------
+## Тест-кейсы для задания C
+#### Для функции format_record:
+```py
+test_cases = [("Иванов Иван Иванович", "BIVT-25", 4.6),
+("Петров Пётр", "IKBO-12", 5.0), 
+("Петров Пётр Петрович", "IKBO-12", 5.0), ("  сидорова  анна   сергеевна ", "ABB-01", 3.999), ("Курин Вильян Энкорденко", "BIVT-33", 6), ("Димасик", "DSBA-26", 2)] 
 
-
-
+for case in test_cases:
+    try:
+        print(format_record(case))
+    except ValueError as er1:
+        print('ValueError:', er1)
+    except TypeError as er2:
+        print('TypeError:', er2)
+```
+## Output:
+![тык](../../images/lab02/task_C_test_cases.png)
